@@ -1,29 +1,9 @@
 #include "ScalarConverter.hpp"
 
 void ScalarConverter::convert(const std::string& literal) {
-	// Cas spéciaux pour les pseudo-littéraux
-	if (literal == "nan" || literal == "nanf") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: nanf" << std::endl;
-		std::cout << "double: nan" << std::endl;
+
+	if (isSpecialLiteral(literal))
 		return;
-	}
-	if (literal == "+inf" || literal == "+inff" || literal == "inf" || literal == "inff") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: +inff" << std::endl;
-		std::cout << "double: +inf" << std::endl;
-		return;
-	}
-	if (literal == "-inf" || literal == "-inff") {
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: -inff" << std::endl;
-		std::cout << "double: -inf" << std::endl;
-		return;
-	}
-	
 	if (isChar(literal))
 		convertChar(literal);
 	else if (isInt(literal))
@@ -57,6 +37,31 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other)
 
 ScalarConverter::~ScalarConverter()
 {
+}
+
+bool ScalarConverter::isSpecialLiteral(const std::string& literal) {
+	// Cas spéciaux pour les pseudo-littéraux
+	if (literal == "nan" || literal == "nanf") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: nanf" << std::endl;
+		std::cout << "double: nan" << std::endl;
+		return;
+	}
+	if (literal == "+inf" || literal == "+inff" || literal == "inf" || literal == "inff") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: +inff" << std::endl;
+		std::cout << "double: +inf" << std::endl;
+		return;
+	}
+	if (literal == "-inf" || literal == "-inff") {
+		std::cout << "char: impossible" << std::endl;
+		std::cout << "int: impossible" << std::endl;
+		std::cout << "float: -inff" << std::endl;
+		std::cout << "double: -inf" << std::endl;
+		return;
+	}
 }
 
 bool ScalarConverter::isChar(const std::string& literal) {
