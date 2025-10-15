@@ -5,13 +5,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <exception>
-#include <typeinfo>
 
 class Base {
 	public:
 		virtual ~Base();
-
-	
 };
 
 class A : public Base {};

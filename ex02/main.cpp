@@ -1,6 +1,6 @@
 #include "Base.hpp"
 
-class Wrong : public Base {};
+// class Wrong : public Base {};
 
 Base *generate() {
 	std::srand(time(NULL));
@@ -44,7 +44,7 @@ void identify(Base& p) {
 		std::cout << "Identified type: A" << std::endl;
 		return;
 	}
-	catch (std::bad_cast&) {}
+	catch (std::exception &e) {}
 
 	try {
 		B& b = dynamic_cast<B&>(p);
@@ -52,7 +52,7 @@ void identify(Base& p) {
 		std::cout << "Identified type: B" << std::endl;
 		return;
 	}
-	catch (std::bad_cast&) {}
+	catch (std::exception &e) {}
 
 	try {
 		C& c = dynamic_cast<C&>(p);
@@ -60,7 +60,7 @@ void identify(Base& p) {
 		std::cout << "Identified type: C" << std::endl;
 		return;
 	}
-	catch (std::bad_cast&) {}
+	catch (std::exception &e) {}
 
 	std::cout << "Identified type: Unknown" << std::endl;
 }
@@ -74,13 +74,13 @@ int main() {
 	std::cout << "\nIdentifying using reference:" << std::endl;
 	identify(*base);
 
-	Base& wrong = *(new Wrong());
-	std::cout << "\nIdentifying wrong type using reference:" << std::endl;
-	identify(wrong);
-	std::cout << "\nIdentifying wrong type using pointer:" << std::endl;
-	identify(&wrong);
-	delete &wrong;
+	// Base& wrong = *(new Wrong());
+	// std::cout << "\nIdentifying wrong type using reference:" << std::endl;
+	// identify(wrong);
+	// std::cout << "\nIdentifying wrong type using pointer:" << std::endl;
+	// identify(&wrong);
 
+	// delete &wrong;
 	delete base;
 	return 0;
 }
